@@ -1,0 +1,23 @@
+:root {
+  --font-family-main: Consolas, 'Times new roman', serif;
+  --font-size-m: 16px;
+  --font-line-m: 24px;
+  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+  --font-size-l: 24px;
+  --font-line-l: 32px;
+  --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+  // Размеры
+
+  --switcher-min-width:70px;
+  --switcher-min-height:25px;
+  --switcher-toggle-radius:21px;
+  --border-radius-stantart: 25px;
+  --border-radius-min: 8px;
+
+  // Цвета
+
+  --violet-100:#722746;
+  --white-transp-100: #fff;
+  --yellow-100:#f8d047;
+}

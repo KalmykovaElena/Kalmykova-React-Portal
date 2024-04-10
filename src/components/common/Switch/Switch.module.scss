@@ -1,0 +1,61 @@
+.toggle {
+  position: relative;
+  width: var(--switcher-min-width);
+  display: inline-block;
+  height: var(--switcher-min-height);
+}
+.toggle input[type='checkbox'] {
+  display: none;
+}
+.toggle .switch {
+  position: absolute;
+  cursor: pointer;
+  background-color: var(--yellow-100);
+  border-radius: var(--border-radius-stantart);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.2s ease;
+}
+.toggle .switch::before {
+  position: absolute;
+  content: '';
+  left: 2px;
+  top: 2px;
+  width: var(--switcher-toggle-radius);
+  height: var(--switcher-toggle-radius);
+  background-color: var( --white-transp-100);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.toggle input[type='checkbox']:checked + .switch::before {
+  inset-inline-start: calc(100% - var(--switcher-toggle-radius) - 1px);
+  background-color: var( --white-transp-100);
+}
+.toggle input[type='checkbox']:checked + .switch {
+  background-color: var(--violet-100);
+}
+.switch {
+  min-width: var(--switcher-min-width);
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var( --white-transp-100);
+}
+
+.checked.withText {
+  padding-left: 5px;
+  padding-right: calc(var(--switcher-toggle-radius) + 1px);;
+}
+.text {
+  position: absolute;
+  left: 9px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.hidden {
+  visibility: hidden;
+}
