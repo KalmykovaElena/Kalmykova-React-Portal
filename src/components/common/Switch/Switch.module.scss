@@ -10,8 +10,10 @@
 .toggle .switch {
   position: absolute;
   cursor: pointer;
-  background-color: var(--yellow-100);
-  border-radius: var(--border-radius-stantart);
+  // background-color: var(--yellow-100);
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius-standart);
   top: 0;
   right: 0;
   bottom: 0;
@@ -34,7 +36,7 @@
   background-color: var( --white-transp-100);
 }
 .toggle input[type='checkbox']:checked + .switch {
-  background-color: var(--violet-100);
+  background-color: transparent;
 }
 .switch {
   min-width: var(--switcher-min-width);
@@ -42,7 +44,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var( --white-transp-100);
+  color: var( --secondary-color);
+  font:var(--font-s);
 }
 
 .checked.withText {
@@ -51,7 +54,7 @@
 }
 .text {
   position: absolute;
-  left: 9px;
+  left: 12px;
   display: inline-block;
   width: 100%;
   text-align: center;

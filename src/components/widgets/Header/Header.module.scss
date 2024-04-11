@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font: var(--font-m);
+ 
+  nav {
+    flex-grow: 1;
+  }
+  select, button {
+    align-self: stretch;
+    font: var(--font-s);
+  }
+  a {
+    text-decoration: none;
+    &:global.active {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+  }
+}
+.logo{
+    max-width: 35px;
+    cursor: pointer;
+  }

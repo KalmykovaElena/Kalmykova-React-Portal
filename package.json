@@ -21,6 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.1.0",
+    "react-router-dom": "^6.22.3",
     "react-scripts": "^5.0.1",
     "sass": "^1.74.1",
     "typescript": "^4.9.5",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "sass-loader": "^14.1.1"
   }
 }
