@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-hooks'],
   settings: {
     react: {
       version: '18.2.0',
@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     'no-param-reassign': 'off',
     'no-unused-vars': 'warn',
+    'react/display-name': 'off',
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -43,5 +44,7 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/jsx-filename-extension': 'off',
     quotes: ['error', 'single'],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };

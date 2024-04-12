@@ -9,6 +9,9 @@
   --font-size-l: 24px;
   --font-line-l: 32px;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+   --font-size-error:12px;
+  --font-line-error: 18px;
+  --font-error: var(--font-size-error) / var(--font-line-error) var(--font-family-main);
 
   // Размеры
 
@@ -28,4 +31,10 @@
   --orange2-color: #f67f17;
   --gray1-color: #8b8b8b;
   --gray2-color: #ccc;
+  --error-color: #f5222d;
+  --overlay-color: rgba(0 0 0 / 60%);
+
+    // z-index
+
+  --modal-z-index: 10;
 }

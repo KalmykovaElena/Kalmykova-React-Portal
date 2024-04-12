@@ -10,7 +10,7 @@ interface SwitchProps {
   onChange: () => void;
 }
 export const Switch: FC<SwitchProps> = ({
-  checked,
+  checked=false,
   checkedText = '',
   unCheckedText = '',
   className,

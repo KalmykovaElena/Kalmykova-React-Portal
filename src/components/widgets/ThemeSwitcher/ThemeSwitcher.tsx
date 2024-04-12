@@ -20,8 +20,8 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ checked }) => {
       <Switch
         onChange={toggleTheme}
         checked={theme === Theme.LIGHT || checked}
-        checkedText={t('ночь')}
-        unCheckedText={t('день')}
+        checkedText={t('день')}
+        unCheckedText={t('ночь')}
       />
       <LightIcon />
     </div>
