@@ -4,7 +4,18 @@
   "ночь": "night",
   "Войти": "Enter",
   "Выйти": "Exit",
+  "Вход": "Sign in",
+  "Регистрация": "Sign up",
   "Страница не найдена": "Page not found",
   "Главная": "Main",
-  "Избранное": "Favourites"
+  "Избранное": "Favourites",
+  "Введите имя": "Enter a username",
+  "Введите пароль": "Enter password",
+  "Обязательное поле": "Required field",
+  "Содержание пароля": "The password must contain uppercase and lowercase letters, as well as at least one digit",
+  "Неверный логин или пароль": "Invalid username or password",
+  "Такой пользователь уже существует":"Such a user already exists",
+  "Недопустимые символы":"Invalid characters",
+  "Пароли должны совпадать":"Passwords must match",
+  "Отправить":"Submit"
 }

@@ -1,0 +1,17 @@
+.loginform {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 25rem;
+  min-height: var(--login-form-height);
+}
+
+.loginBtn {
+  margin-left: auto;
+  margin-top: auto;
+}
+
+.error {
+  min-height: 1.2rem;
+  color: var(--error-color);
+}

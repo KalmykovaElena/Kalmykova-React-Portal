@@ -8,11 +8,16 @@ interface FormProps {
   className?: string;
   reset: boolean;
 }
-export const Form: FC<FormProps> = ({ onSubmit, children, className,reset }) => {
+export const Form: FC<FormProps> = ({
+  onSubmit,
+  children,
+  className,
+  reset,
+}) => {
   const methods = useForm();
-  useEffect(()=>{
-  if(reset) methods.reset()
-  },[methods, reset]);
+  useEffect(() => {
+    if (reset) methods.reset();
+  }, [methods, reset]);
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className={className}>

@@ -1,4 +1,4 @@
-import { SelectOptionType } from 'types/types';
+import { SelectOptionType } from 'src/types/types';
 
 export const langSelectOptions: SelectOptionType = [
   { value: 'ru', label: 'RU' },

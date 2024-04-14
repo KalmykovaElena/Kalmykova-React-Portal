@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Select.module.scss';
-import { SelectOptionType } from 'types/types';
+import { SelectOptionType } from 'src/types/types';
 
 interface SelectProps {
   options: SelectOptionType;

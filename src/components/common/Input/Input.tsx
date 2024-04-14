@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import styles from './Input.module.scss';
+import { ErrorType } from 'src/types/types';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -18,6 +19,7 @@ interface InputProps extends HTMLInputProps {
   autofocus?: boolean;
   name: string;
   validate?: RegisterOptions;
+  inputError?: ErrorType;
 }
 export const Input = memo((props: InputProps) => {
   const {
@@ -29,12 +31,14 @@ export const Input = memo((props: InputProps) => {
     autofocus,
     name,
     validate,
+    inputError,
     ...otherProps
   } = props;
   const {
     register,
     formState: { errors },
     setFocus,
+    setError,clearErrors
   } = useFormContext();
   const { t } = useTranslation();
 
@@ -44,6 +48,13 @@ export const Input = memo((props: InputProps) => {
     }
   }, [autofocus, name, setFocus]);
 
+  useEffect(()=>{
+  if(inputError?.message){
+    setError(name, { type: 'custom',...inputError });
+  }else{
+clearErrors(name)
+  }
+  },[clearErrors, inputError, name, setError]);
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };

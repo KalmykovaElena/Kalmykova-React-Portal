@@ -1,5 +1,5 @@
-import { Loader } from 'components/common/Loader/Loader';
-import { routeConfig } from 'config/routeConfig';
+import { Loader } from 'src/components/common/Loader/Loader';
+import { routeConfig } from 'src/config/routeConfig';
 import { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 
