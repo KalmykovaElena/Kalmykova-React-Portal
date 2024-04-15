@@ -17,5 +17,6 @@
   "Такой пользователь уже существует":"Such a user already exists",
   "Недопустимые символы":"Invalid characters",
   "Пароли должны совпадать":"Passwords must match",
-  "Отправить":"Submit"
+  "Отправить":"Submit",
+  "Страница":"Page"
 }

@@ -7,6 +7,7 @@ import { useAppDispatch } from 'src/redux/store';
 import { Input } from 'src/components/common/Input/Input';
 import { Button } from 'src/components/common/Button/Button';
 import { UserActions } from 'src/redux/reducers/userSlice';
+import { MoviesActions } from 'src/redux/reducers/moviesSlice';
 
 interface LoginFormProps {
   reset: boolean;
@@ -23,7 +24,7 @@ export const LoginForm: FC<LoginFormProps> = ({
 }) => {
   const { t } = useTranslation();
   const [error, setError] = useState<ErrorType>();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onLogin = (data: LoginByUserNameProps) => {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
@@ -35,6 +36,7 @@ export const LoginForm: FC<LoginFormProps> = ({
         setloginError(t('Неверный логин или пароль'));
       } else {
         dispatch(UserActions.setAuthUserName(foundUser.userName));
+        dispatch(MoviesActions.addSavedFavorites(foundUser.favorites));
         onSuccess();
       }
     } else {
@@ -43,9 +45,13 @@ export const LoginForm: FC<LoginFormProps> = ({
       } else if (data.password !== data.repeatPassword) {
         setError({ message: t('Пароли должны совпадать') });
       } else {
-        const newUser = { userName: data.userName, password: data.password };
+        const newUser = {
+          userName: data.userName,
+          password: data.password,
+          favorites: [],
+        };
         localStorage.setItem('users', JSON.stringify([...users, newUser]));
-         dispatch(UserActions.setAuthUserName(newUser.userName));
+        dispatch(UserActions.setAuthUserName(newUser.userName));
         onSuccess();
       }
     }

@@ -1,0 +1,25 @@
+.favoritemanager {
+}
+.heart_icon {
+  fill: red;
+  :global .cls-1 {
+    fill: transparent;
+  }
+}
+
+.heart_filled{
+    :global .cls-1 {
+    fill:red;
+  } 
+}
+.heart_white{
+  fill: #fff;
+  :global .cls-1 {
+    fill: transparent;
+  }
+}
+.heart_white_filled{
+  :global .cls-1 {
+    fill:#fff;
+  } 
+}

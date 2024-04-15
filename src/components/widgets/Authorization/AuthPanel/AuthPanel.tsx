@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { UserActions } from 'src/redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
+import { MoviesActions } from 'src/redux/reducers/moviesSlice';
 
 export const AuthPanel = () => {
   const [isModalOpen, setisModalOpen] = useState(false);
@@ -20,10 +21,15 @@ export const AuthPanel = () => {
   };
   const onExit = () => {
     dispatch(UserActions.setAuthUserName(''));
+    dispatch(MoviesActions.clearFavorites());
   };
   return (
     <div className={styles.authpanel}>
-      <Button variant="outlined" className={styles.btn} onClick={userName ? onExit : onShowModal}>
+      <Button
+        variant="outlined"
+        className={styles.btn}
+        onClick={userName ? onExit : onShowModal}
+      >
         {userName ? t('Выйти') : t('Войти')}
       </Button>
       <div className={styles.username}>{userName}</div>
