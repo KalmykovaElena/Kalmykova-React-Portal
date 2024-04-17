@@ -6,12 +6,17 @@ import { Movie } from 'src/types/types';
 
 interface MoviesListProps {
   data: Movie[];
+  isLoading:boolean;
 }
-export const MoviesList: FC<MoviesListProps> = ({ data }) => {
+export const MoviesList: FC<MoviesListProps> = ({ data, isLoading }) => {
   return (
     <div className={styles.moviesList}>
       {data.map((movie: Movie) => (
-        <MovieCard key={movie.filmId} movie={movie} />
+        <MovieCard
+          key={movie.filmId || movie.kinopoiskId}
+          movie={movie}
+          isLoading={isLoading}
+        />
       ))}
     </div>
   );
