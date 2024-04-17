@@ -1,4 +1,4 @@
-import  { FC } from 'react';
+import  { FC, memo } from 'react';
 import { ReactComponent as LightIcon } from 'src/assets/icons/light-theme.svg';
 import { ReactComponent as DarkIcon} from 'src/assets/icons/dark-theme.svg';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import classNames from 'classnames';
 interface ThemeSwitcherProps {
   checked?: boolean;
 }
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ checked }) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ checked }) => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   return (
@@ -26,4 +26,4 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ checked }) => {
       <LightIcon />
     </div>
   );
-};
+});

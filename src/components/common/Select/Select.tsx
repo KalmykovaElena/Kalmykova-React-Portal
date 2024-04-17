@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import styles from './Select.module.scss';
 import { SelectOptionType } from 'src/types/types';
 
@@ -10,7 +10,7 @@ interface SelectProps {
   style?: { [key: string]: string };
 }
 
-const Select: React.FC<SelectProps> = ({
+const Select: React.FC<SelectProps> =memo(({
   options,
   selected,
   onChange,
@@ -24,8 +24,11 @@ const Select: React.FC<SelectProps> = ({
     setSelectedValue(event.target.value);
     onChange(event.target.value);
   };
-
+useEffect(()=>{
+setSelectedValue(selected);
+},[selected]);
   return (
+    
     <select
       className={styles.select}
       value={selectedValue}
@@ -43,6 +46,6 @@ const Select: React.FC<SelectProps> = ({
       ))}
     </select>
   );
-};
+});
 
 export default Select;

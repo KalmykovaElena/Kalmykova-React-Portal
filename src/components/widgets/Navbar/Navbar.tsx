@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss'
 import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 
-export const Navbar = () => {
+export const Navbar = memo(() => {
     const { t } = useTranslation();
   return (
     <nav className={styles.navbar}>
@@ -10,4 +11,4 @@ export const Navbar = () => {
       <NavLink to={'/favorites'}>{t('Избранное')}</NavLink>
     </nav>
   );
-}
+})

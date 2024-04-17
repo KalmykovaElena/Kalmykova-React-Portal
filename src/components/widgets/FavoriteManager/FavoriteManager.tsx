@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import styles from './FavoriteManager.module.scss';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
@@ -11,7 +11,7 @@ interface FavoriteManagerProps {
   item: Movie;
   className?: string;
 }
-export const FavoriteManager: FC<FavoriteManagerProps> = ({
+export const FavoriteManager: FC<FavoriteManagerProps> = memo(({
   isLong,
   item,
   className,
@@ -64,4 +64,4 @@ export const FavoriteManager: FC<FavoriteManagerProps> = ({
       )}
     </div>
   );
-};
+});

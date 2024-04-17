@@ -18,5 +18,7 @@
   "Недопустимые символы":"Invalid characters",
   "Пароли должны совпадать":"Passwords must match",
   "Отправить":"Submit",
-  "Страница":"Page"
+  "Страница":"Page",
+   "Фильмы":"Movies",
+   "Поиск":"Search"
 }

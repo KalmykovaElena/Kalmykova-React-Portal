@@ -1,0 +1,18 @@
+.searchbar {
+    align-self: flex-start;
+    display: flex;
+    gap:5px;
+  :global(.search-input) {
+    & + div {
+        display: none;
+    }
+  }
+}
+.searchform{
+    position: relative;
+}
+.searchBtn{
+    position: absolute;
+    right: 0;
+    top:0;
+}

@@ -15,6 +15,7 @@ export type ErrorType={
 }
 export interface Movie {
   filmId: number;
+  kinopoiskId?: number;
   nameRu: string;
   nameEn: string;
   year: string;
@@ -30,9 +31,15 @@ export interface Movie {
   isAfisha: number;
 }
 
+export interface SearchOptions {
+  searchByKeyWord?: string;
+  searchByGanre?: string;
+}
 export interface MoviesResponse {
-  Search: Movie[];
-  totalResults: string;
-  Response: string;
-  Error?: string;
+  films: Movie[];
+  pagesCount: number;
+}
+export interface SearchMoviesResponse extends MoviesResponse {
+  keyword: string;
+  searchFilmsCountResult: number;
 }

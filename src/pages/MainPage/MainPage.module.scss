@@ -1,0 +1,15 @@
+.main {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+}
+.title {
+  align-self: flex-start;
+}
+.searchTerm {
+  color: var(--secondary-color);
+}

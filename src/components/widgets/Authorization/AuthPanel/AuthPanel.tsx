@@ -1,13 +1,13 @@
 import styles from './AuthPanel.module.scss';
 import { Button } from 'src/components/common/Button/Button';
 import { AuthnModal } from '../AuthnModal/AuthnModal';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { UserActions } from 'src/redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
 import { MoviesActions } from 'src/redux/reducers/moviesSlice';
 
-export const AuthPanel = () => {
+export const AuthPanel = memo(() => {
   const [isModalOpen, setisModalOpen] = useState(false);
   const userName = useAppSelector(({ user }) => user.authUserName);
   const dispatch = useAppDispatch();
@@ -36,4 +36,4 @@ export const AuthPanel = () => {
       <AuthnModal isOpen={isModalOpen} onClose={onCloseModal} />
     </div>
   );
-};
+});

@@ -6,7 +6,7 @@ interface FormProps {
   onSubmit: (value: any) => void;
   children: ReactNode;
   className?: string;
-  reset: boolean;
+  reset?: boolean;
 }
 export const Form: FC<FormProps> = ({
   onSubmit,
