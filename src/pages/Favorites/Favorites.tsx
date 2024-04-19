@@ -35,7 +35,7 @@ export const Favorites: FC<FavoritesProps> = () => {
   useEffect(() => {
     setData(favorites);
     const filteredGenres = filterGenres(favorites);
-    const convertedGenres = convertGenres(filteredGenres);
+    const convertedGenres = convertGenres(filteredGenres, t('все жанры'));
     dispatch(MoviesActions.setGenres(convertedGenres));
 
     if (searchTerm) {
@@ -52,7 +52,7 @@ export const Favorites: FC<FavoritesProps> = () => {
       );
       setData(filterData);
     }
-  }, [dispatch, favorites, searchGanre, searchTerm]);
+  }, [dispatch, favorites, searchGanre, searchTerm, t]);
 
   return (
     <main

@@ -17,7 +17,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie, isLoading }) => {
   const { posterUrl, nameRu, nameEn, genres, year, rating, ratingKinopoisk } =
     movie;
   const [imageLoaded, setImageLoaded] = useState(false);
-
+const movieRating = Number(rating || ratingKinopoisk).toFixed(1);
   const handleImageLoaded = () => {
     setImageLoaded(true);
   };
@@ -33,7 +33,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie, isLoading }) => {
       ) : (
         <>
           <div className={styles.imgWrapper}>
-            <div className={styles.rating}>{rating || ratingKinopoisk}</div>
+            <div className={styles.rating}>{movieRating}</div>
             {!imageLoaded && (
               <Skeleton className={styles.skeleton} width="100%" height={300} />
             )}

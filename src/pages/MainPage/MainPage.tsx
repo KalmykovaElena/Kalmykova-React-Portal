@@ -11,9 +11,11 @@ import { Loader } from 'src/components/common/Loader/Loader';
 import styles from './MainPage.module.scss';
 import { MovieListContainer } from 'src/components/widgets/MovieListContainer/MovieListContainer';
 import { convertGenres } from 'src/utils/convertGenres';
+import { useTranslation } from 'react-i18next';
 
 export const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const {t}=useTranslation()
   const { page, renderData, searchTerm, searchGanre } = useAppSelector(
     ({ movies }) => movies,
   );
@@ -27,9 +29,9 @@ export const MainPage: React.FC = () => {
  
   useEffect(()=>{
   if(genresList){
-dispatch( setGenres(convertGenres(genresList.genres)));
+dispatch(setGenres(convertGenres(genresList.genres, t('все жанры'))));
   }
-  },[dispatch, genresList, setGenres]);
+  },[dispatch, genresList, setGenres, t]);
   useEffect(() => {
     if (searchData?.keyword) {
       dispatch(setRenderData(searchData));

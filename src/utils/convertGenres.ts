@@ -1,8 +1,8 @@
 import { Genre } from 'src/types/types';
 
-export const convertGenres = (genres: Genre[] | string[]) => {
+export const convertGenres = (genres: Genre[] | string[],title:string) => {
   return [
-    { value: '', label: 'все жанры' },
+    { value: '', label: title },
     ...genres.map((genre) => {
       if (typeof genre === 'string') {
         return {
