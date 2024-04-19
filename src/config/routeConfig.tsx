@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { RouteObject } from 'react-router-dom';
-import {MainPage} from 'pages/MainPage/MainPage'
-import { Favorites } from 'pages/Favorites/Favorites';
-import { NotFound } from 'pages/NotFound/NotFound';
+import {MainPage} from 'src/pages/MainPage/MainPage'
+import { Favorites } from 'src/pages/Favorites/Favorites';
+import { NotFound } from 'src/pages/NotFound/NotFound';
 
 export enum AppRoutes {
   MAIN = 'main',

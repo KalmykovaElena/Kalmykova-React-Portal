@@ -1,0 +1,11 @@
+.authpanel{
+position: relative;
+}
+.username{
+    position: absolute;
+    bottom: -var(--font-line-m);
+    right: 0;
+}
+.btn{
+    min-width: 62px;
+}

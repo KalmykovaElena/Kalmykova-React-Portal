@@ -1,5 +1,8 @@
 :root {
   --font-family-main: Consolas, 'Times new roman', serif;
+  --font-size-10: 10px;
+  --font-line-10: 14px;
+  --font-10: var(--font-size-10) / var(--font-line-10) var(--font-family-main);
   --font-size-s: 16px;
   --font-line-s: 24px;
   --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
@@ -20,6 +23,7 @@
   --switcher-toggle-radius: 21px;
   --border-radius-standart: 25px;
   --border-radius-min: 8px;
+  --login-form-height: 17rem;
 
   // Цвета
 
@@ -32,8 +36,7 @@
   --gray1-color: #8b8b8b;
   --gray2-color: #ccc;
   --error-color: #f5222d;
-  --overlay-color: rgba(0 0 0 / 60%);
-
+  --green-color:rgb(64, 179, 64);
     // z-index
 
   --modal-z-index: 10;

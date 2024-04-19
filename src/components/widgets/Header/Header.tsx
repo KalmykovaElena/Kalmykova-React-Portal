@@ -1,26 +1,22 @@
-import { Button } from 'components/common/Button/Button';
 import { LangSelect } from '../LangSelect/LangSelect';
 import { Navbar } from '../Navbar/Navbar';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import styles from './Header.module.scss';
-import { useTranslation } from 'react-i18next';
-import { ReactComponent as Logo } from 'assets/logo.svg';
+import { ReactComponent as Logo } from 'src/assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { AuthPanel } from '../Authorization/AuthPanel/AuthPanel';
+import { memo } from 'react';
 
-export const Header = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate(); 
+export const Header = memo(() => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <Logo className={styles.logo} onClick={() => navigate('/')} />
       <Navbar />
-      <>
-        <ThemeSwitcher />
-        <LangSelect />
-        <Button variant="outlined" type="submit">
-          {t('Войти')}
-        </Button>
-      </>
+      <ThemeSwitcher />
+      <LangSelect />
+      <AuthPanel />
     </header>
   );
-};
+});

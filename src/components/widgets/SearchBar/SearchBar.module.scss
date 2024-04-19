@@ -1,0 +1,29 @@
+.searchbar {
+    align-self: flex-start;
+    display: flex;
+    gap:5px;
+    position: relative;
+  :global(.search-input) {
+    & + div {
+        display: none;
+    }
+  }
+  :global(.sort-select){
+  position: relative;
+  top:-12px;
+  right: 0;
+  padding-bottom: 12px;
+}
+}
+.searchform{
+    position: relative;
+}
+.searchBtn{
+    position: absolute;
+    right: 0;
+    top:0;
+}
+
+.genre{
+ margin-bottom: 12px;
+}

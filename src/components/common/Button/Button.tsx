@@ -1,15 +1,16 @@
-import React, { ButtonHTMLAttributes, FC } from 'react';
+import React, { ButtonHTMLAttributes, FC, memo } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
+import { ReactComponent as SearchIcon } from 'src/assets/search.svg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  variant: 'primary' | 'secondary' | 'outlined' | 'clear';
+  variant: 'primary' | 'secondary' | 'outlined' | 'clear' | 'search';
   disabled?: boolean;
   // eslint-disable-next-line no-unused-vars
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = memo((props) => {
   const {
     className,
     children,
@@ -18,6 +19,10 @@ export const Button: FC<ButtonProps> = (props) => {
     disabled,
     ...otherProps
   } = props;
+
+  const renderContent = () => {
+    return variant === 'search' ? <SearchIcon /> : children;
+  };
   return (
     <button
       type="button"
@@ -28,6 +33,7 @@ export const Button: FC<ButtonProps> = (props) => {
           [styles.clear]: variant === 'clear',
           [styles.primary]: variant === 'primary',
           [styles.secondary]: variant === 'secondary',
+          [styles.search]: variant === 'search',
         },
         [className],
       )}
@@ -35,7 +41,7 @@ export const Button: FC<ButtonProps> = (props) => {
       disabled={disabled}
       {...otherProps}
     >
-      {children}
+      {renderContent()}
     </button>
   );
-};
+});

@@ -60,3 +60,10 @@
   color: var(--gray1-color);
   background: var(--gray2-color);
 }
+.search {
+  padding: 0.2rem;
+  fill: var(--gray2-color);
+ &:hover{
+  fill:var(--primary-color)
+ }
+}

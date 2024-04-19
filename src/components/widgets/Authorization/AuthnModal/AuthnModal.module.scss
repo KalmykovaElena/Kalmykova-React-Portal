@@ -1,0 +1,19 @@
+
+.title{
+  font:var(--font-l);
+  color:var(--inverted-bg-color);
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 16px;
+}
+.type{
+  text-align: center;
+  cursor: pointer;
+}
+.selected{
+  border-bottom: 2px solid var(--orange1-color);
+}
+.error {
+  min-height: 2.2rem;
+  color: var(--error-color);
+}
