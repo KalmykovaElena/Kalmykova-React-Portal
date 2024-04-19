@@ -15,10 +15,10 @@ interface MoviesState {
 const initialState: MoviesState = {
   favorites: [],
   page: 1,
-  renderData:undefined,
-  searchTerm:'',
-  searchGanre:'',
-  genres:[]
+  renderData: undefined,
+  searchTerm: '',
+  searchGanre: '',
+  genres: [],
 };
 
 const moviesSlice = createSlice({
@@ -30,8 +30,10 @@ const moviesSlice = createSlice({
       manageStoredFavorites(state.favorites);
     },
     removeMovieFromFavorites: (state, action: PayloadAction<number>) => {
-      state.favorites = state.favorites.filter(
-        (movie) => movie.filmId !== action.payload,
+      state.favorites = state.favorites.filter((movie) =>
+        movie.filmId
+          ? movie.filmId !== action.payload
+          : movie.kinopoiskId !== action.payload,
       );
       manageStoredFavorites(state.favorites);
     },
@@ -59,4 +61,4 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { actions:MoviesActions, reducer: MoviesReducer } = moviesSlice;
+export const { actions: MoviesActions, reducer: MoviesReducer } = moviesSlice;

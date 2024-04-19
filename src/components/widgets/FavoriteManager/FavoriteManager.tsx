@@ -20,7 +20,7 @@ export const FavoriteManager: FC<FavoriteManagerProps> = memo(
 
     const handleClick = () => {
       isFavourite
-        ? dispatch(MoviesActions.removeMovieFromFavorites(item.filmId))
+        ? dispatch(MoviesActions.removeMovieFromFavorites(item.filmId??item.kinopoiskId))
         : dispatch(MoviesActions.addMovieToFavorites(item));
     };
     useEffect(() => {

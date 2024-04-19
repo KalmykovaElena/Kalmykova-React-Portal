@@ -5,12 +5,14 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import { Movie } from 'src/types/types';
 import classNames from 'classnames';
 
+
 interface MoviesListProps {
   data: Movie[];
   isLoading:boolean;
   className?:string;
 }
 export const MoviesList: FC<MoviesListProps> = ({ data, isLoading, className }) => {
+  
   return (
       <div className={classNames(styles.moviesList, [className])}>
         {data.map((movie: Movie) => (
