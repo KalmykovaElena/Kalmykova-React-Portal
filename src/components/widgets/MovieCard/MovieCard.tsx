@@ -33,10 +33,10 @@ const movieRating = Number(rating || ratingKinopoisk).toFixed(1);
       ) : (
         <>
           <div className={styles.imgWrapper}>
-            <div className={styles.rating}>{movieRating}</div>
             {!imageLoaded && (
               <Skeleton className={styles.skeleton} width="100%" height={300} />
             )}
+            <div className={styles.rating}>{movieRating}</div>
             <img
               className={classNames(styles.poster, {
                 [styles.loaded]: imageLoaded,
@@ -46,7 +46,7 @@ const movieRating = Number(rating || ratingKinopoisk).toFixed(1);
               onLoad={handleImageLoaded}
             />
 
-            {isAuth && <FavoriteManager item={movie} className={styles.icon} />}
+            {/* {isAuth && <FavoriteManager item={movie} className={styles.icon} />} */}
           </div>
           <div className={styles.title}>
             {i18n.language === 'ru' ? nameRu ?? nameEn : nameEn ?? nameRu}
@@ -56,6 +56,7 @@ const movieRating = Number(rating || ratingKinopoisk).toFixed(1);
           </div>
         </>
       )}
+      {isAuth && <FavoriteManager item={movie} className={styles.icon} />}
     </div>
   );
 };
