@@ -1,52 +1,41 @@
 /* eslint-disable no-unused-vars */
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './SearchBar.module.scss';
 import { Button } from 'src/components/common/Button/Button';
 import { Form } from 'src/components/common/Form/Form';
 import { Input } from 'src/components/common/Input/Input';
 import { useTranslation } from 'react-i18next';
-import { useGetGanresQuery } from 'src/redux/reducers/moviesApi';
 import { SearchOptions } from 'src/types/types';
 import Select from 'src/components/common/Select/Select';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { MoviesActions } from 'src/redux/reducers/moviesSlice';
+import { SortSelect } from '../SortSelect/SortSelect';
 
-interface SearchBarProps {
-  onSearch: (value: string) => void;
-  onSearchGanre: (value: string) => void;
-  selected?:string;
-}
-interface Genre {
-  id: number;
-  genre: string;
-}
-export const SearchBar: FC<SearchBarProps> = ({
-  onSearch,
-  onSearchGanre,
-  selected,
-}) => {
+export const SearchBar = () => {
   const [resetSearch, setresetSearch] = useState(false);
   const { t } = useTranslation();
-  const { data} = useGetGanresQuery();
-  const genres = data
-    ? [
-        { value: '', label: 'все жанры' },
-        ...data.genres.map(({ id, genre }: Genre) => {
-          return {
-            value: id,
-            label: genre,
-          };
-        }),
-      ]
-    : [];
+  const dispatch = useAppDispatch();
+  const { genres, searchGanre } = useAppSelector(({ movies }) => movies);
+  const { setSearchTerm, setSearchGanre, setPage } = MoviesActions;
 
   const onSubmit = (e: SearchOptions) => {
-    onSearch(e.searchByKeyWord || '');
+    dispatch(setSearchTerm(e.searchByKeyWord || ''));
     setresetSearch(true);
+     dispatch(setSearchGanre(''));
+    dispatch(setPage(1));
   };
   const onchangeGanre = (e: string) => {
-     onSearch('')
-    onSearchGanre(e);
+    dispatch(setSearchTerm(''));
+    dispatch(setSearchGanre(e));
+    dispatch(setPage(1));
   };
-
+useEffect(()=>{
+return ()=>{
+  dispatch(setSearchTerm(''));
+  dispatch(setSearchGanre(''));
+  dispatch(setPage(1));
+}
+},[dispatch, setPage, setSearchGanre, setSearchTerm]);
   return (
     <div className={styles.searchbar}>
       <Form
@@ -61,11 +50,18 @@ export const SearchBar: FC<SearchBarProps> = ({
           name="searchByKeyWord"
           maxLength={20}
           className="search-input"
+          onChange={() => setresetSearch(false)}
         />
 
         <Button variant="search" type="submit" className={styles.searchBtn} />
       </Form>
-      <Select options={genres} onChange={onchangeGanre} selected={selected} />
+      <Select
+        options={genres}
+        onChange={onchangeGanre}
+        selected={searchGanre}
+        className={styles.genre}
+      />
+      <SortSelect />
     </div>
   );
 };

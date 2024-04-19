@@ -1,13 +1,17 @@
 import styles from './AuthPanel.module.scss';
 import { Button } from 'src/components/common/Button/Button';
 import { AuthnModal } from '../AuthnModal/AuthnModal';
-import { memo, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { UserActions } from 'src/redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
 import { MoviesActions } from 'src/redux/reducers/moviesSlice';
+import classNames from 'classnames';
 
-export const AuthPanel = memo(() => {
+interface AuthPanelProps{
+className?:string
+}
+export const AuthPanel:FC<AuthPanelProps> = memo(({className}) => {
   const [isModalOpen, setisModalOpen] = useState(false);
   const userName = useAppSelector(({ user }) => user.authUserName);
   const dispatch = useAppDispatch();
@@ -24,7 +28,7 @@ export const AuthPanel = memo(() => {
     dispatch(MoviesActions.clearFavorites());
   };
   return (
-    <div className={styles.authpanel}>
+    <div className={classNames(styles.authpanel,[className])}>
       <Button
         variant="outlined"
         className={styles.btn}

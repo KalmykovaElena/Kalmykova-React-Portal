@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { FC } from 'react';
 
 interface PaginationProps {
-    pageCount:number
+ 
 }
-export const Pagination: FC<PaginationProps> = ({ pageCount }) => {
+export const Pagination: FC<PaginationProps> = () => {
   const dispatch = useAppDispatch();
-  const page = useAppSelector(({ movies }) => movies.page);
+  const {page, renderData} = useAppSelector(({ movies }) => movies);
   const { t } = useTranslation();
   const handleNextPage = () => {
     dispatch(MoviesActions.setPage(page + 1));
@@ -32,7 +32,7 @@ export const Pagination: FC<PaginationProps> = ({ pageCount }) => {
       <Button
         variant="secondary"
         onClick={handleNextPage}
-        disabled={page === pageCount}
+        disabled={page === renderData?.pagesCount}
       >
         {'>>'}
       </Button>

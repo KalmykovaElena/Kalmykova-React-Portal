@@ -90,7 +90,7 @@ export const LoginForm: FC<LoginFormProps> = ({
       {!isLogin && (
         <Input
           isFullfield
-          placeholder={t('Введите пароль')}
+          placeholder={t('Повторите пароль')}
           name="repeatPassword"
           inputError={error}
           validate={{

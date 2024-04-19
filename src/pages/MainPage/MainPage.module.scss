@@ -13,3 +13,8 @@
 .searchTerm {
   color: var(--secondary-color);
 }
+.filter{
+  display: flex;
+  gap: 5px;
+  align-self: flex-start;
+}

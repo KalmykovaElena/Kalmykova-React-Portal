@@ -14,7 +14,8 @@ interface MovieCardProps {
 export const MovieCard: FC<MovieCardProps> = ({ movie, isLoading }) => {
   const { i18n } = useTranslation();
   const isAuth = useAppSelector(({ user }) => user.authUserName);
-  const { posterUrl, nameRu, nameEn, genres, year, rating } = movie;
+  const { posterUrl, nameRu, nameEn, genres, year, rating, ratingKinopoisk } =
+    movie;
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoaded = () => {
@@ -32,7 +33,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie, isLoading }) => {
       ) : (
         <>
           <div className={styles.imgWrapper}>
-            <div className={styles.rating}>{rating}</div>
+            <div className={styles.rating}>{rating || ratingKinopoisk}</div>
             {!imageLoaded && (
               <Skeleton className={styles.skeleton} width="100%" height={300} />
             )}

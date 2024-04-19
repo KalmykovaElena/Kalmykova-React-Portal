@@ -1,16 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Movie } from 'src/types/types';
+import { Movie, MoviesResponse, SelectOptionType } from 'src/types/types';
 import { manageStoredFavorites } from 'src/utils/manageStoredFavorites';
 
 interface MoviesState {
   favorites: Movie[];
-  page:number;
+  page: number;
+  renderData: MoviesResponse | undefined;
+  searchTerm: string;
+  searchGanre: string;
+  genres: SelectOptionType;
 }
 
 const initialState: MoviesState = {
   favorites: [],
-  page:1
+  page: 1,
+  renderData:undefined,
+  searchTerm:'',
+  searchGanre:'',
+  genres:[]
 };
 
 const moviesSlice = createSlice({
@@ -25,7 +33,7 @@ const moviesSlice = createSlice({
       state.favorites = state.favorites.filter(
         (movie) => movie.filmId !== action.payload,
       );
-     manageStoredFavorites(state.favorites);
+      manageStoredFavorites(state.favorites);
     },
     clearFavorites: (state) => {
       state.favorites = [];
@@ -35,6 +43,18 @@ const moviesSlice = createSlice({
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
+    },
+    setRenderData: (state, action: PayloadAction<MoviesResponse>) => {
+      state.renderData = action.payload;
+    },
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
+    setSearchGanre: (state, action: PayloadAction<string>) => {
+      state.searchGanre = action.payload;
+    },
+    setGenres: (state, action: PayloadAction<SelectOptionType>) => {
+      state.genres = action.payload;
     },
   },
 });

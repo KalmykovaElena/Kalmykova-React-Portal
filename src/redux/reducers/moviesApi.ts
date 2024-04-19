@@ -23,8 +23,8 @@ export const moviesApi = createApi({
     getGanres: builder.query({
       query: (_: void) => 'v2.2/films/filters',
     }),
-    searchMoviesByGanre: builder.query({
-      query: (ganreId) => `v2.2/films?genres=${ganreId}`,
+    searchMoviesByGanre: builder.query<any, {ganreId:number, page?: number }>({
+      query: ({ganreId,page}) => `v2.2/films?genres=${ganreId}&page=${page}`,
     }),
   }),
 });

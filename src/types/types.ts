@@ -13,7 +13,13 @@ export interface LoginByUserNameProps extends User{
 export type ErrorType={
   message:string
 }
+export interface Genre {
+  id?: number;
+  genre: string;
+}
+
 export interface Movie {
+  [key: string]: any;
   filmId: number;
   kinopoiskId?: number;
   nameRu: string;
@@ -23,6 +29,7 @@ export interface Movie {
   countries: { country: string }[];
   genres: { genre: string }[];
   rating: string;
+  ratingKinopoisk?: string;
   ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
