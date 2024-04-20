@@ -6,7 +6,7 @@ import ThemeProvider from 'src/providers/ThemeProvider/ThemeProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-
+import ErrorBoundary from './providers/ErrorBoundary/ErrorBoundary';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -15,9 +15,10 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <ThemeProvider>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </ThemeProvider>
     </Provider>
-    ,
   </BrowserRouter>,
 );

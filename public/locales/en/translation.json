@@ -26,7 +26,9 @@
   "год": "year",
   "рэйтинг": "rating",
   "Список избранных фильмов пуст...": "The list of favorite movies is empty...",
-  "Только авторизованные пользователи могут сохранять фильмы в избранные.":"Only authorized users can save movies to favorites.",
-  "Фильмы не найдены":"No movies found",
-  "все жанры":"all genres"
+  "Только авторизованные пользователи могут сохранять фильмы в избранные.": "Only authorized users can save movies to favorites.",
+  "Фильмы не найдены": "No movies found",
+  "все жанры": "all genres",
+  "Произошла непредвиденная ошибка": "An unexpected error has occurred",
+  "Обновить страницу": "Refresh the page"
 }
