@@ -53,9 +53,7 @@ dispatch(setGenres(convertGenres(genresList.genres, t('все жанры'))));
       {isLoading || isSearchLoading || isGanresLoading ? (
         <Loader />
       ) : (
-        renderData&&<MovieListContainer 
-          isLoading={isLoading || isSearchLoading || isGanresLoading}
-        />
+        renderData&&<MovieListContainer />
       )}
     </main>
   );
