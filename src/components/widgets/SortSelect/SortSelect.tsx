@@ -27,7 +27,7 @@ export const SortSelect = memo(() => {
         sortedFilms = films.sort((a, b) => {
           const ratingA = a.rating || a.ratingKinopoisk || '0';
           const ratingB = b.rating || b.ratingKinopoisk || '0';
-          return parseInt(ratingB) - parseInt(ratingA);
+          return parseFloat(ratingB) - parseFloat(ratingA);
         });
       } else {
         sortedFilms = films.sort(
