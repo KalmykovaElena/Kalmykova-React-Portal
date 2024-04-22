@@ -1,35 +1,54 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, MouseEventHandler, memo, useEffect, useState } from 'react';
 import styles from './FavoriteManager.module.scss';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { ReactComponent as Heart } from 'src/assets/heart-svg.svg';
+import { ReactComponent as Star } from 'src/assets/star.svg';
 import { Movie } from 'src/types/types';
 import { MoviesActions } from 'src/redux/reducers/moviesSlice';
+import { useTranslation } from 'react-i18next';
+import { AuthnModal } from '../Authorization/AuthnModal/AuthnModal';
 
 interface FavoriteManagerProps {
-  isLong?: boolean;
   item: Movie;
   className?: string;
+  variant?: 'heart' | 'star';
 }
 export const FavoriteManager: FC<FavoriteManagerProps> = memo(
-  ({ isLong, item, className }) => {
+  ({ item, className, variant = 'heart' }) => {
     const [isFavourite, setIsFavourite] = useState(false);
+    const [isTextVisible, setIsTextVisible] = useState(false);
+    const [isModalOpen, setisModalOpen] = useState(false);
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const authUserName = useAppSelector(({ user }) => user.authUserName);
     const favorites = useAppSelector(({ movies }) => movies.favorites);
 
-    const handleClick = () => {
-      isFavourite
-        ? dispatch(MoviesActions.removeMovieFromFavorites(item.filmId??item.kinopoiskId))
-        : dispatch(MoviesActions.addMovieToFavorites(item));
+    const onCloseModal = () => {
+      setisModalOpen(false);
     };
+
+const handleClick: MouseEventHandler<SVGSVGElement> = (event) => {
+  event.stopPropagation();
+  if (!authUserName) {
+    setisModalOpen(true);
+  } else {
+    isFavourite
+      ? dispatch(
+          MoviesActions.removeMovieFromFavorites(
+            item.filmId ?? item.kinopoiskId,
+          ),
+        )
+      : dispatch(MoviesActions.addMovieToFavorites(item));
+  }
+};
     useEffect(() => {
       if (favorites) {
         if (
-          favorites.find((movie) =>
-            movie.kinopoiskId
-              ? movie.kinopoiskId === item.kinopoiskId
-              : movie.filmId === item.filmId,
+          favorites.find(
+            (movie) =>
+              (movie.filmId || movie.kinopoiskId) ===
+              (item.filmId || item.kinopoiskId),
           )
         ) {
           setIsFavourite(true);
@@ -45,26 +64,38 @@ export const FavoriteManager: FC<FavoriteManagerProps> = memo(
           { [styles.hidden]: !authUserName },
           [className],
         )}
-        onClick={handleClick}
       >
-        {isLong ? (
-          <div className={styles.wrapper}>
-            <span>
-              {isFavourite ? 'Удалить из избранного' : 'Добавить в избранное'}{' '}
-            </span>
-            <Heart
-              className={classNames(styles.heart_white, {
-                [styles.heart_white_filled]: isFavourite,
+        {variant === 'star' ? (
+          <>
+            <div className={styles.wrapper}>
+              <Star
+                className={classNames(styles.star_icon, {
+                  [styles.star_filled]: isFavourite,
+                })}
+                onMouseOver={() => setIsTextVisible(true)}
+                onMouseOut={() => setIsTextVisible(false)}
+                onClick={handleClick}
+              />
+            </div>
+            <div
+              className={classNames(styles.text, {
+                [styles.text_visible]: isTextVisible,
               })}
-            />
-          </div>
+            >
+              {isFavourite
+                ? t('удалить из избранного')
+                : t('добавить в избранное')}
+            </div>
+          </>
         ) : (
-          <Heart
+              <Heart
             className={classNames(styles.heart_icon, {
               [styles.heart_filled]: isFavourite,
             })}
+            onClick={handleClick}
           />
         )}
+        <AuthnModal isOpen={isModalOpen} onClose={onCloseModal} />
       </div>
     );
   },

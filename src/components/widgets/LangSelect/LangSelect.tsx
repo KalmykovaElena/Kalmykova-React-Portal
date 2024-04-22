@@ -1,7 +1,12 @@
 import { Suspense, memo } from 'react';
 import Select from 'src/components/common/Select/Select';
-import { langSelectOptions } from 'src/constants/options';
 import i18n from 'src/config/i18n';
+import { SelectOptionType } from 'src/types/types';
+
+export const langSelectOptions: SelectOptionType = [
+  { value: 'ru', label: 'RU' },
+  { value: 'en', label: 'EN' },
+];
 
 export const LangSelect= memo(() => {
   return (

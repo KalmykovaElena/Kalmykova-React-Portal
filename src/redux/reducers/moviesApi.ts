@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MoviesResponse, SearchMoviesResponse } from 'src/types/types';
+import { MovieResponse, MoviesResponse, SearchMoviesResponse } from 'src/types/types';
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
@@ -16,16 +16,22 @@ export const moviesApi = createApi({
       query: ({ page = 1 }) =>
         `v2.1/films/top?type=TOP_AWAIT_FILMS&page=${page}`,
     }),
-    searchMovies: builder.query<SearchMoviesResponse, string>({
-      query: (searchTerm) =>
-        `v2.1/films/search-by-keyword?keyword=${searchTerm}`,
+    searchMovies: builder.query<SearchMoviesResponse,{ searchTerm: string; page: number }>({
+      query: ({searchTerm, page}) =>
+        `v2.1/films/search-by-keyword?keyword=${searchTerm}&page=${page}`,
+    }),
+    getMovieById: builder.query<MovieResponse, string>({
+      query: (id) => `v2.1/films/${id}`,
     }),
     getGanres: builder.query({
       query: (_: void) => 'v2.2/films/filters',
     }),
-    searchMoviesByGanre: builder.query<any, {ganreId:number, page?: number }>({
-      query: ({ganreId,page}) => `v2.2/films?genres=${ganreId}&page=${page}`,
-    }),
+    searchMoviesByGanre: builder.query<any, { ganreId: number; page?: number }>(
+      {
+        query: ({ ganreId, page }) =>
+          `v2.2/films?genres=${ganreId}&page=${page}`,
+      },
+    ),
   }),
 });
 
@@ -34,4 +40,5 @@ export const {
   useSearchMoviesQuery,
   useGetGanresQuery,
   useSearchMoviesByGanreQuery,
+  useGetMovieByIdQuery
 } = moviesApi;

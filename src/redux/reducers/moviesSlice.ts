@@ -10,6 +10,7 @@ interface MoviesState {
   searchTerm: string;
   searchGanre: string;
   genres: SelectOptionType;
+  rating:string
 }
 
 const initialState: MoviesState = {
@@ -19,6 +20,7 @@ const initialState: MoviesState = {
   searchTerm: '',
   searchGanre: '',
   genres: [],
+  rating:''
 };
 
 const moviesSlice = createSlice({
@@ -57,6 +59,9 @@ const moviesSlice = createSlice({
     },
     setGenres: (state, action: PayloadAction<SelectOptionType>) => {
       state.genres = action.payload;
+    },
+    setRating: (state, action: PayloadAction<string>) => {
+      state.rating = action.payload;
     },
   },
 });

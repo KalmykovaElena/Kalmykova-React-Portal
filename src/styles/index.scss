@@ -9,3 +9,15 @@
   color: var(--primary-color);
   min-height: 100vh;
 }
+
+*::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+}
+*::-webkit-scrollbar-track {
+  background: var(--violet-100);        /* цвет дорожки */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--violet-200);    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+  border: 2px solid white;  /* padding вокруг плашки */
+}

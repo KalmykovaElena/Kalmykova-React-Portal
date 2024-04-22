@@ -30,5 +30,8 @@
   "Фильмы не найдены": "No movies found",
   "все жанры": "all genres",
   "Произошла непредвиденная ошибка": "An unexpected error has occurred",
-  "Обновить страницу": "Refresh the page"
+  "Обновить страницу": "Refresh the page",
+  "Ошибка получения данных о фильме":"Error receiving movie data",
+  "удалить из избранного":"delete from Favorites",
+   "добавить в избранное":"add to favorites"
 }

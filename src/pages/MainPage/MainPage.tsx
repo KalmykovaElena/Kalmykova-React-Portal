@@ -12,26 +12,34 @@ import styles from './MainPage.module.scss';
 import { MovieListContainer } from 'src/components/widgets/MovieListContainer/MovieListContainer';
 import { convertGenres } from 'src/utils/convertGenres';
 import { useTranslation } from 'react-i18next';
+import { handleErrorMessage } from 'src/utils/rtqHelpers';
 
 export const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {t}=useTranslation()
+  const { t } = useTranslation();
   const { page, renderData, searchTerm, searchGanre } = useAppSelector(
     ({ movies }) => movies,
   );
-  const { data:genresList } = useGetGanresQuery();
-  const { data, isLoading } = useGetMoviesQuery({ page });
-  const { data: searchData, isLoading: isSearchLoading } =
-    useSearchMoviesQuery(searchTerm);
-  const { data: searchGanres, isLoading: isGanresLoading } =
-    useSearchMoviesByGanreQuery({ ganreId:+searchGanre, page });
+  const { data: genresList } = useGetGanresQuery();
+  const { data, isLoading, error } = useGetMoviesQuery({ page });
+  const {
+    data: searchData,
+    isLoading: isSearchLoading,
+    error: searchError,
+  } = useSearchMoviesQuery({ searchTerm, page });
+  const {
+    data: searchGanres,
+    isLoading: isGanresLoading,
+    error: ganresError,
+  } = useSearchMoviesByGanreQuery({ ganreId: +searchGanre, page });
   const { setSearchGanre, setRenderData, setGenres } = MoviesActions;
- 
-  useEffect(()=>{
-  if(genresList){
-dispatch(setGenres(convertGenres(genresList.genres, t('все жанры'))));
-  }
-  },[dispatch, genresList, setGenres, t]);
+  const fetchError = searchError || ganresError || error;
+
+  useEffect(() => {
+    if (genresList) {
+      dispatch(setGenres(convertGenres(genresList.genres, t('все жанры'))));
+    }
+  }, [dispatch, genresList, setGenres, t]);
   useEffect(() => {
     if (searchData?.keyword) {
       dispatch(setRenderData(searchData));
@@ -46,14 +54,24 @@ dispatch(setGenres(convertGenres(genresList.genres, t('все жанры'))));
     } else if (data) {
       dispatch(setRenderData(data));
     }
-    
-  }, [searchData, data, searchGanres, searchGanre, dispatch, setRenderData, setSearchGanre]);
+  }, [
+    searchData,
+    data,
+    searchGanres,
+    searchGanre,
+    dispatch,
+    setRenderData,
+    setSearchGanre,
+  ]);
+  if (fetchError) {
+    handleErrorMessage(fetchError);
+  }
   return (
     <main className={styles.main}>
       {isLoading || isSearchLoading || isGanresLoading ? (
         <Loader />
       ) : (
-        renderData&&<MovieListContainer />
+        renderData && <MovieListContainer />
       )}
     </main>
   );

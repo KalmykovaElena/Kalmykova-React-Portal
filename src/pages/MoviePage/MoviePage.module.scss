@@ -1,0 +1,69 @@
+.moviepage {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--font-line-m);
+}
+.content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.title {
+  font-size: 4vw;
+  line-height: 5vw;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.imgWrapper {
+  max-height: 80vh;
+  border: 2px solid var(--primary-color);
+  padding: var(--img-padding);
+  border-radius: var(--border-radius-min);
+}
+.favorite {
+  position: absolute;
+  bottom: 0;
+  right: calc(var(--favorite-icon-size) * -1.5);
+}
+.poster {
+  height: 100%;
+  object-fit: contain;
+}
+.info {
+  display: flex;
+  gap: 8px;
+  color: var(--gray1-color);
+  position: relative;
+  align-self: flex-start;
+}
+.time {
+  display: flex;
+  gap: 8px;
+  color: var(--additional-color);
+}
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  button {
+    cursor: default;
+  }
+}
+.description {
+  color: var(--secondary-color);
+  margin-top: 15px;
+  font: var(--font-m);
+}
+.slogan {
+  height: calc(var(--font-line-s) * 2.5);
+}
+:global .word {
+  font-style: italic;
+}
