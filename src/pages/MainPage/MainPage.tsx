@@ -12,7 +12,7 @@ import styles from './MainPage.module.scss';
 import { MovieListContainer } from 'src/components/widgets/MovieListContainer/MovieListContainer';
 import { convertGenres } from 'src/utils/convertGenres';
 import { useTranslation } from 'react-i18next';
-import { handleErrorMessage } from 'src/utils/rtqHelpers';
+import { handleError } from 'src/utils/handleError';
 
 export const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ export const MainPage: React.FC = () => {
     setSearchGanre,
   ]);
   if (fetchError) {
-    handleErrorMessage(fetchError);
+    handleError(fetchError)
   }
   return (
     <main className={styles.main}>
