@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { RouteObject } from 'react-router-dom';
-import { MainPage } from 'src/pages/MainPage/MainPage';
-import { Favorites } from 'src/pages/Favorites/Favorites';
-import { NotFound } from 'src/pages/NotFound/NotFound';
-import { MoviePage } from 'src/pages/MoviePage/MoviePage';
+import { lazy } from 'react';
+const MainPage = lazy(() => import('src/pages/MainPage/MainPage'));
+const Favorites = lazy(() => import('src/pages/Favorites/Favorites'));
+const NotFound = lazy(() => import('src/pages/NotFound/NotFound'));
+const MoviePage = lazy(() => import('src/pages/MoviePage/MoviePage'));
 
 export enum AppRoutes {
   MAIN = 'main',

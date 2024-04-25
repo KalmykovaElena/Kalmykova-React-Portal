@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-vars */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MovieResponse, MoviesResponse, SearchMoviesResponse } from 'src/types/types';
+import {
+  MovieResponse,
+  MoviesResponse,
+  SearchMoviesResponse,
+} from 'src/types/types';
 
+const apiKey = process.env.REACT_APP_API_KEY ?? '';
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://kinopoiskapiunofficial.tech/api/',
     prepareHeaders: (headers) => {
-      headers.set('X-API-KEY', 'a1beac30-8ffb-4688-9abb-5b2cbc0b91ff');
+      headers.set('X-API-KEY', apiKey);
       return headers;
     },
   }),
@@ -16,8 +21,11 @@ export const moviesApi = createApi({
       query: ({ page = 1 }) =>
         `v2.1/films/top?type=TOP_AWAIT_FILMS&page=${page}`,
     }),
-    searchMovies: builder.query<SearchMoviesResponse,{ searchTerm: string; page: number }>({
-      query: ({searchTerm, page}) =>
+    searchMovies: builder.query<
+      SearchMoviesResponse,
+      { searchTerm: string; page: number }
+    >({
+      query: ({ searchTerm, page }) =>
         `v2.1/films/search-by-keyword?keyword=${searchTerm}&page=${page}`,
     }),
     getMovieById: builder.query<MovieResponse, string>({
@@ -40,5 +48,5 @@ export const {
   useSearchMoviesQuery,
   useGetGanresQuery,
   useSearchMoviesByGanreQuery,
-  useGetMovieByIdQuery
+  useGetMovieByIdQuery,
 } = moviesApi;

@@ -14,7 +14,7 @@ import { convertGenres } from 'src/utils/convertGenres';
 import { useTranslation } from 'react-i18next';
 import { handleError } from 'src/utils/handleError';
 
-export const MainPage: React.FC = () => {
+ const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { page, renderData, searchTerm, searchGanre } = useAppSelector(
@@ -22,6 +22,7 @@ export const MainPage: React.FC = () => {
   );
   const { data: genresList } = useGetGanresQuery();
   const { data, isLoading, error } = useGetMoviesQuery({ page });
+
   const {
     data: searchData,
     isLoading: isSearchLoading,
@@ -64,6 +65,7 @@ export const MainPage: React.FC = () => {
     setSearchGanre,
   ]);
   if (fetchError) {
+    console.log(fetchError)
     handleError(fetchError)
   }
   return (
@@ -76,3 +78,4 @@ export const MainPage: React.FC = () => {
     </main>
   );
 };
+export default MainPage;

@@ -15,7 +15,7 @@ import { transformObject } from 'src/utils/transformObject';
 import { useAppSelector } from 'src/redux/store';
 
 interface MoviePageProps {}
-export const MoviePage: FC<MoviePageProps> = () => {
+const MoviePage: FC<MoviePageProps> = () => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
   const {
@@ -102,3 +102,4 @@ export const MoviePage: FC<MoviePageProps> = () => {
     </div>
   );
 };
+export default MoviePage;
