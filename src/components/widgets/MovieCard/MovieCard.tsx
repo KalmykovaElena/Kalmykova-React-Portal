@@ -38,7 +38,10 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
             src={posterUrl}
             alt={nameRu}
             fallback={
-              <Skeleton className={styles.skeleton} width="70%" height={300} />
+              <Skeleton
+                className={styles.skeleton}
+                width="90%"
+              />
             }
             errorFallback={<Logo />}
           />

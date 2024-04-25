@@ -1,4 +1,10 @@
-import { FC, ImgHTMLAttributes, ReactElement, useLayoutEffect, useState } from 'react';
+import {
+  FC,
+  ImgHTMLAttributes,
+  ReactElement,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import styles from './AppImage.module.scss';
 import classNames from 'classnames';
 
@@ -18,19 +24,19 @@ export const AppImage: FC<AppImageProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  useLayoutEffect(()=>{
-    const img = new Image()
-    img.src=src??''
-    img.onload=()=>{
-        setIsLoading(false)
-    }
-    img.onerror=()=>{
-        setIsLoading(false);
-        setHasError(true)
-    }
-  },[src])
-  if(isLoading && fallback){
-    return fallback
+  useLayoutEffect(() => {
+    const img = new Image();
+    img.src = src ?? '';
+    img.onload = () => {
+      setIsLoading(false);
+    };
+    img.onerror = () => {
+      setIsLoading(false);
+      setHasError(true);
+    };
+  }, [src]);
+  if (isLoading && fallback) {
+    return fallback;
   }
   if (hasError && errorFallback) {
     return errorFallback;

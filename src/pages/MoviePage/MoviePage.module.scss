@@ -10,6 +10,10 @@
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
+  @media only screen and (max-width: 760px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 }
 .title {
   font-size: 4vw;
@@ -26,6 +30,9 @@
   border: 2px solid var(--primary-color);
   padding: var(--img-padding);
   border-radius: var(--border-radius-min);
+  @media only screen and (max-width: 760px) {
+    width: 60%;
+  }
 }
 .favorite {
   position: absolute;
@@ -35,6 +42,9 @@
 .poster {
   height: 100%;
   object-fit: contain;
+  @media only screen and (max-width: 760px) {
+    width: 100%;
+  }
 }
 .info {
   display: flex;

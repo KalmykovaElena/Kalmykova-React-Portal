@@ -35,7 +35,7 @@ export const MoviePage: FC<MoviePageProps> = () => {
         <Loader />
       ) : (
         movie && (
-          <div className={styles.content}>
+          <main className={styles.content}>
             <div className={styles.details}>
               <div className={styles.title}>
                 {' '}
@@ -96,7 +96,7 @@ export const MoviePage: FC<MoviePageProps> = () => {
                 errorFallback={<Logo />}
               />
             </div>
-          </div>
+          </main>
         )
       )}
     </div>

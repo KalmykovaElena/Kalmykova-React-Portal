@@ -1,11 +1,14 @@
-.authpanel{
-position: relative;
+.authpanel {
+  position: relative;
 }
-.username{
-    position: absolute;
-    bottom: -var(--font-line-m);
-    right: 0;
+.username {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  @media only screen and (max-width: 760px) {
+    position: relative;
+  }
 }
-.btn{
-    min-width: 62px;
+.btn {
+  min-width: 62px;
 }
