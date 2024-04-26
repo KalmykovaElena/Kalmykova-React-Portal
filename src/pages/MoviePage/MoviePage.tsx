@@ -1,4 +1,5 @@
-import { FC } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, useEffect } from 'react';
 import styles from './MoviePage.module.scss';
 import { useParams } from 'react-router-dom';
 import { useGetMovieByIdQuery } from 'src/redux/reducers/moviesApi';
@@ -12,7 +13,9 @@ import { AnimatedText } from 'src/components/common/AnimatedText/AnimatedText';
 import { useTranslation } from 'react-i18next';
 import { FavoriteManager } from 'src/components/widgets/FavoriteManager/FavoriteManager';
 import { transformObject } from 'src/utils/transformObject';
-import { useAppSelector } from 'src/redux/store';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { MoviesActions } from 'src/redux/reducers/moviesSlice';
+import { manageStoredFavorites } from 'src/utils/manageStoredFavorites';
 
 interface MoviePageProps {}
 const MoviePage: FC<MoviePageProps> = () => {
@@ -28,7 +31,11 @@ const MoviePage: FC<MoviePageProps> = () => {
   if (error) {
     throw new Error(t('Ошибка получения данных о фильме'));
   }
-  
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(MoviesActions.addSavedFavorites(manageStoredFavorites()));
+  }, []);
   return (
     <div className={styles.moviepage}>
       {isLoading ? (
