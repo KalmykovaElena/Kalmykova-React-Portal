@@ -17,32 +17,38 @@ interface MovieCardProps {
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const isAuth = useAppSelector(({ user }) => user.authUserName);
-  const { posterUrl, nameRu, nameEn, genres, year, rating, ratingKinopoisk,filmId, kinopoiskId } =
-    movie;
-  const movieRating = Number(rating || ratingKinopoisk).toFixed(1);
+  const {
+    posterUrl,
+    nameRu,
+    nameEn,
+    genres,
+    year,
+    rating,
+    ratingKinopoisk,
+    filmId,
+    kinopoiskId,
+  } = movie;
+  const movieRating =
+    rating || ratingKinopoisk
+      ? Number(rating || ratingKinopoisk).toFixed(1)
+      : '';
   const movieId = filmId || kinopoiskId;
-
   const handleMovieClick = () => {
     dispatch(MoviesActions.setRating(movieRating));
-  navigate(`${movieId}`);
-};
+    navigate(`${movieId}`);
+  };
   return (
     <div className={styles.moviecard} onClick={handleMovieClick}>
       <>
         <div className={styles.imgWrapper}>
-          <div className={styles.rating}>{movieRating}</div>
+          {movieRating && <div className={styles.rating}>{movieRating}</div>}
           <AppImage
             className={classNames(styles.poster)}
             src={posterUrl}
             alt={nameRu}
-            fallback={
-              <Skeleton
-                className={styles.skeleton}
-                width="90%"
-              />
-            }
+            fallback={<Skeleton className={styles.skeleton} width="90%" />}
             errorFallback={<Logo />}
           />
         </div>
