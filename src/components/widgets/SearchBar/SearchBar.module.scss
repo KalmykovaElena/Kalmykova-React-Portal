@@ -4,13 +4,12 @@
   gap: 5px;
   position: relative;
   top: var(--font-size-m);
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   :global(.search-input) {
     & + div {
       display: none;
     }
-    
   }
   :global(.sort-select) {
     position: relative;
@@ -18,11 +17,17 @@
     right: 0;
     padding-bottom: 12px;
   }
+
+  }
+   
+   .searchbar:not(:first-child) {
+  flex-wrap: nowrap;
 }
 .searchform {
   position: relative;
    @media only screen and (max-width: 560px) {
-    width: 100%;
+   flex-grow: 1;
+width: 100%;
   }
 }
 .searchClear {
@@ -38,4 +43,7 @@
 
 .genre {
   margin-bottom: 12px;
+    @media only screen and (max-width: 360px) {
+   flex: 0 0 40%;
+  }
 }
