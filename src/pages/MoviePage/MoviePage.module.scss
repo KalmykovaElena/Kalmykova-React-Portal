@@ -38,6 +38,10 @@
   position: absolute;
   bottom: 0;
   right: calc(var(--favorite-icon-size) * -1.5);
+  @media only screen and (max-width: 560px) {
+   position:static;
+   width: 100%;
+  }
 }
 .poster {
   height: 100%;
@@ -48,6 +52,7 @@
 }
 .info {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   color: var(--gray1-color);
   position: relative;
