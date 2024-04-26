@@ -4,10 +4,13 @@
   gap: 5px;
   position: relative;
   top: var(--font-size-m);
+  flex-wrap: wrap;
+  justify-content: center;
   :global(.search-input) {
     & + div {
       display: none;
     }
+    
   }
   :global(.sort-select) {
     position: relative;
@@ -18,6 +21,9 @@
 }
 .searchform {
   position: relative;
+   @media only screen and (max-width: 560px) {
+    width: 100%;
+  }
 }
 .searchClear {
   position: absolute;

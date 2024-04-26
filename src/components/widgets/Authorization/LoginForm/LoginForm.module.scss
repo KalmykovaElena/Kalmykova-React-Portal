@@ -4,6 +4,9 @@
   gap: 0.5rem;
   width: 25rem;
   min-height: var(--login-form-height);
+   @media only screen and (max-width: 560px) {
+    width: auto;
+  }
 }
 
 .loginBtn {
