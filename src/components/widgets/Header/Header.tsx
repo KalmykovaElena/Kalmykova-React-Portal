@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthPanel } from '../Authorization/AuthPanel/AuthPanel';
 import { memo } from 'react';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
-import BurgerMenuProvider from 'src/providers/BurgerMenuProvider/BurgerMenuProvider';
 import { useBurgerMenu } from 'src/providers/BurgerMenuProvider/useBurgerMenu';
 
 const HeaderContent = () => (
@@ -22,23 +21,21 @@ const HeaderContent = () => (
 export const Header = memo(() => {
   const navigate = useNavigate();
   const { setIsBurgerMenuOpen } = useBurgerMenu();
-  
+
   const handleLogoClick = () => {
     navigate('/');
     setIsBurgerMenuOpen!(false);
   };
-  
+
   return (
-    <BurgerMenuProvider>
-      <header className={styles.header}>
-        <Logo className={styles.logo} onClick={handleLogoClick} />
-        <div className={styles.content}>
-          <HeaderContent />
-        </div>
-        <BurgerMenu>
-          <HeaderContent />
-        </BurgerMenu>
-      </header>
-    </BurgerMenuProvider>
+    <header className={styles.header}>
+      <Logo className={styles.logo} onClick={handleLogoClick} />
+      <div className={styles.content}>
+        <HeaderContent />
+      </div>
+      <BurgerMenu>
+        <HeaderContent />
+      </BurgerMenu>
+    </header>
   );
 });
