@@ -10,6 +10,9 @@
   color: var(--orange2-color);
   opacity: 0;
   transition: all 0.3s;
+   @media only screen and (max-width: 560px) {
+    opacity: 1;
+  }
 }
 .text_visible {
   opacity: 1;
