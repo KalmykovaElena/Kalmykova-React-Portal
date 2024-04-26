@@ -8,10 +8,9 @@ import classNames from 'classnames';
 
 interface MoviesListProps {
   data: Movie[];
-  isLoading:boolean;
   className?:string;
 }
-export const MoviesList: FC<MoviesListProps> = ({ data, isLoading, className }) => {
+export const MoviesList: FC<MoviesListProps> = ({ data, className }) => {
   
   return (
       <div className={classNames(styles.moviesList, [className])}>
@@ -19,7 +18,6 @@ export const MoviesList: FC<MoviesListProps> = ({ data, isLoading, className }) 
           <MovieCard
             key={movie.filmId || movie.kinopoiskId}
             movie={movie}
-            isLoading={isLoading}
           />
         ))}
       </div>

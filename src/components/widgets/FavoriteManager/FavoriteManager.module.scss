@@ -1,4 +1,30 @@
-.favoritemanager {
+.wrapper {
+  max-height: var(--favorite-icon-size);
+  position: relative;
+}
+.text {
+  position: absolute;
+  text-wrap: nowrap;
+  bottom: 0;
+  left: var(--favorite-icon-size);
+  color: var(--orange2-color);
+  opacity: 0;
+  transition: all 0.3s;
+}
+.text_visible {
+  opacity: 1;
+}
+.wrapper_filled {
+  background-color: var(--primary-color);
+  color: var(--white-transp-100);
+}
+.star_icon {
+  fill: transparent;
+  width: var(--favorite-icon-size);
+  cursor: pointer;
+}
+.star_filled {
+  fill: var(--yellow-100);
 }
 .heart_icon {
   fill: red;
@@ -7,19 +33,19 @@
   }
 }
 
-.heart_filled{
-    :global .cls-1 {
-    fill:red;
-  } 
+.heart_filled {
+  :global .cls-1 {
+    fill: red;
+  }
 }
-.heart_white{
+.heart_white {
   fill: #fff;
   :global .cls-1 {
     fill: transparent;
   }
 }
-.heart_white_filled{
+.heart_white_filled {
   :global .cls-1 {
-    fill:#fff;
-  } 
+    fill: #fff;
+  }
 }

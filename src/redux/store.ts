@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { UserReducer } from './reducers/userSlice';
 import { moviesApi } from './reducers/moviesApi';
 import {  MoviesReducer } from './reducers/moviesSlice';
+import errorHandlingMiddleware from './middlewares/errorHandlingMiddleware';
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,10 @@ export const store = configureStore({
     [moviesApi.reducerPath]: moviesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(moviesApi.middleware),
+    getDefaultMiddleware().concat(
+      moviesApi.middleware,
+      errorHandlingMiddleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

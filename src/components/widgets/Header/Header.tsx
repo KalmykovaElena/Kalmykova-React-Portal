@@ -6,6 +6,16 @@ import { ReactComponent as Logo } from 'src/assets/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { AuthPanel } from '../Authorization/AuthPanel/AuthPanel';
 import { memo } from 'react';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+
+const HeaderContent = () => (
+  <>
+    <Navbar />
+    <ThemeSwitcher />
+    <LangSelect />
+    <AuthPanel className='auth'/>
+  </>
+);
 
 export const Header = memo(() => {
   const navigate = useNavigate();
@@ -13,10 +23,12 @@ export const Header = memo(() => {
   return (
     <header className={styles.header}>
       <Logo className={styles.logo} onClick={() => navigate('/')} />
-      <Navbar />
-      <ThemeSwitcher />
-      <LangSelect />
-      <AuthPanel />
+      <div className={styles.content}>
+        <HeaderContent />
+      </div>
+      <BurgerMenu>
+        <HeaderContent />
+      </BurgerMenu>
     </header>
   );
 });

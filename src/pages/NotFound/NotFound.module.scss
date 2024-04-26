@@ -1,8 +1,27 @@
-.notFound{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: var(--font-l);
-    color: var(--orange1-color);
-    height: 30vh;
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--font-l);
+  color: var(--orange1-color);
+}
+.wrapper {
+  width: 60%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.title {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  font: var(--font-36);
+  font-weight: bold;
+}
+.icon {
+  width: 40vw;
 }

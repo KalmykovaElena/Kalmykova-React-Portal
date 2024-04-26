@@ -1,22 +1,22 @@
-.favorites{
-    min-height: 90vh;
+.favorites {
+  min-height: 90vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   padding: 8px;
- 
 }
-.empty{
+.empty {
   justify-content: center;
-  gap:50px
+  gap: 50px;
 }
 
-.favorite_list{
- justify-content: flex-start;
+.favorite_list {
+  justify-content: flex-start;
 }
-.auth{
- button{
+.auth {
+  button {
     min-width: 200px;
   }
 }

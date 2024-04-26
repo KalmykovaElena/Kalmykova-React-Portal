@@ -1,17 +1,12 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
+  position: relative;
+  min-height: var(--header-min-height);
+  width: 100%;
   font: var(--font-m);
- 
-  nav {
-    flex-grow: 1;
-  }
-  select, button {
-    align-self: stretch;
-    font: var(--font-s);
-  }
+  background-color: var(--bg-color);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
   a {
     text-decoration: none;
     &:global.active {
@@ -20,7 +15,41 @@
     }
   }
 }
-.logo{
-    max-width: 35px;
-    cursor: pointer;
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+  nav {
+    flex-grow: 1;
   }
+  select,
+  button {
+    align-self: stretch;
+    font: var(--font-s);
+  }
+}
+.logo {
+  max-width: 35px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 760px) {
+  .header {
+    position: fixed;
+    justify-content: space-between;
+  }
+  .content {
+    display: none;
+  }
+}
+:global .burgermenu {
+  :global .auth {
+    width: 100%;
+  }
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -10,7 +10,7 @@ import { filterGenres } from 'src/utils/filterGenres';
 import { convertGenres } from 'src/utils/convertGenres';
 
 interface FavoritesProps {}
-export const Favorites: FC<FavoritesProps> = () => {
+ const Favorites: FC<FavoritesProps> = () => {
   const { favorites, page, searchGanre, searchTerm } = useAppSelector(
     ({ movies }) => movies,
   );
@@ -42,7 +42,8 @@ export const Favorites: FC<FavoritesProps> = () => {
       const filterData = favorites.filter(
         (movie) =>
           movie.nameEn?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          movie.nameRu?.toLowerCase().includes(searchTerm.toLowerCase()),
+          movie.nameRu?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          movie.nameOriginal?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setData(filterData);
     }
@@ -75,3 +76,4 @@ export const Favorites: FC<FavoritesProps> = () => {
     </main>
   );
 };
+export default Favorites

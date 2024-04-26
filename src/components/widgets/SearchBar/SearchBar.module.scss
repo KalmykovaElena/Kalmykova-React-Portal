@@ -1,29 +1,35 @@
 .searchbar {
-    align-self: flex-start;
-    display: flex;
-    gap:5px;
-    position: relative;
+  align-self: flex-start;
+  display: flex;
+  gap: 5px;
+  position: relative;
+  top: var(--font-size-m);
   :global(.search-input) {
     & + div {
-        display: none;
+      display: none;
     }
   }
-  :global(.sort-select){
-  position: relative;
-  top:-12px;
-  right: 0;
-  padding-bottom: 12px;
-}
-}
-.searchform{
+  :global(.sort-select) {
     position: relative;
-}
-.searchBtn{
-    position: absolute;
+    top: -12px;
     right: 0;
-    top:0;
+    padding-bottom: 12px;
+  }
+}
+.searchform {
+  position: relative;
+}
+.searchClear {
+  position: absolute;
+  right: 2px;
+  top: 10%;
+  fill:var(--gray1-color);
+   &:hover {
+    cursor: pointer;
+    fill: var(--primary-color);
+  }
 }
 
-.genre{
- margin-bottom: 12px;
+.genre {
+  margin-bottom: 12px;
 }
