@@ -7,13 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { AuthPanel } from '../Authorization/AuthPanel/AuthPanel';
 import { memo } from 'react';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
+import BurgerMenuProvider from 'src/providers/BurgerMenuProvider/BurgerMenuProvider';
 
 const HeaderContent = () => (
   <>
     <Navbar />
     <ThemeSwitcher />
     <LangSelect />
-    <AuthPanel className='auth'/>
+    <AuthPanel className="auth" />
   </>
 );
 
@@ -21,14 +22,16 @@ export const Header = memo(() => {
   const navigate = useNavigate();
 
   return (
-    <header className={styles.header}>
-      <Logo className={styles.logo} onClick={() => navigate('/')} />
-      <div className={styles.content}>
-        <HeaderContent />
-      </div>
-      <BurgerMenu>
-        <HeaderContent />
-      </BurgerMenu>
-    </header>
+    <BurgerMenuProvider>
+      <header className={styles.header}>
+        <Logo className={styles.logo} onClick={() => navigate('/')} />
+        <div className={styles.content}>
+          <HeaderContent />
+        </div>
+        <BurgerMenu>
+          <HeaderContent />
+        </BurgerMenu>
+      </header>
+    </BurgerMenuProvider>
   );
 });

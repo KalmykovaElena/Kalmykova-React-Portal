@@ -1,14 +1,15 @@
-import { FC, ReactNode, useState } from 'react'
-import styles from './BurgerMenu.module.scss'
+import { FC, ReactNode } from 'react';
+import styles from './BurgerMenu.module.scss';
 import classNames from 'classnames';
+import { useBurgerMenu } from 'src/providers/BurgerMenuProvider/useBurgerMenu';
 
 interface BurgerMenuProps {
   children: ReactNode;
 }
 export const BurgerMenu: FC<BurgerMenuProps> = ({ children }) => {
-    const [isActive, setisActive] = useState(false);
+    const { isBurgerMenuOpen, setIsBurgerMenuOpen } = useBurgerMenu();
     const toggleActiveMenu=()=>{
-        setisActive(!isActive)
+        setIsBurgerMenuOpen!(!isBurgerMenuOpen);
     }
   return (
     <div className={styles.burgermenu}>
@@ -18,17 +19,22 @@ export const BurgerMenu: FC<BurgerMenuProps> = ({ children }) => {
         <span></span>
       </div>
       <div
-        className={classNames(styles.menu, { [styles.active]: isActive })}
-        onClick={() => setisActive(false)}
+        className={classNames(styles.menu, {
+          [styles.active]: isBurgerMenuOpen,
+        })}
+        onClick={() => setIsBurgerMenuOpen!(false)}
       >
-        <div className={classNames({ [styles.blur]: isActive })} />
+        <div className={classNames({ [styles.blur]: isBurgerMenuOpen })} />
         <div
           className={classNames('burgermenu', styles.content, {
-            [styles.active]: isActive,
+            [styles.active]: isBurgerMenuOpen,
           })}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className={styles.close} onClick={() => setisActive(false)}>
+          <div
+            className={styles.close}
+            onClick={() => setIsBurgerMenuOpen!(false)}
+          >
             X
           </div>
           {children}

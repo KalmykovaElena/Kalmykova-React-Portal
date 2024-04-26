@@ -7,12 +7,14 @@ import { UserActions } from 'src/redux/reducers/userSlice';
 import { useTranslation } from 'react-i18next';
 import { MoviesActions } from 'src/redux/reducers/moviesSlice';
 import classNames from 'classnames';
+import { useBurgerMenu } from 'src/providers/BurgerMenuProvider/useBurgerMenu';
 
 interface AuthPanelProps{
 className?:string
 }
 export const AuthPanel:FC<AuthPanelProps> = memo(({className}) => {
   const [isModalOpen, setisModalOpen] = useState(false);
+  const { setIsBurgerMenuOpen } = useBurgerMenu();
   const userName = useAppSelector(({ user }) => user.authUserName);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -22,6 +24,7 @@ export const AuthPanel:FC<AuthPanelProps> = memo(({className}) => {
   };
   const onShowModal = () => {
     setisModalOpen(true);
+    if (setIsBurgerMenuOpen) setIsBurgerMenuOpen(false);
   };
   const onExit = () => {
     dispatch(UserActions.setAuthUserName(''));
