@@ -42,7 +42,8 @@ interface FavoritesProps {}
       const filterData = favorites.filter(
         (movie) =>
           movie.nameEn?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          movie.nameRu?.toLowerCase().includes(searchTerm.toLowerCase()),
+          movie.nameRu?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          movie.nameOriginal?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setData(filterData);
     }

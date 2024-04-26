@@ -5,55 +5,61 @@ import { Button } from 'src/components/common/Button/Button';
 import { Form } from 'src/components/common/Form/Form';
 import { Input } from 'src/components/common/Input/Input';
 import { useTranslation } from 'react-i18next';
-import { SearchOptions } from 'src/types/types';
+import { ReactComponent as ClearIcon } from 'src/assets/close-circle-svgrepo-com.svg';
 import Select from 'src/components/common/Select/Select';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { MoviesActions } from 'src/redux/reducers/moviesSlice';
 import { SortSelect } from '../SortSelect/SortSelect';
+import { useDebounce } from 'src/hooks/useDebounce';
 
 export const SearchBar = () => {
-  const [resetSearch, setresetSearch] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { genres, searchGanre } = useAppSelector(({ movies }) => movies);
+  const { genres, searchGanre, searchTerm } = useAppSelector(
+    ({ movies }) => movies,
+  );
   const { setSearchTerm, setSearchGanre, setPage } = MoviesActions;
 
-  const onSubmit = (e: SearchOptions) => {
-    dispatch(setSearchTerm(e.searchByKeyWord || ''));
-    setresetSearch(true);
-     dispatch(setSearchGanre(''));
+  const onChangeSearch = useDebounce((val: string) => {
+    dispatch(setSearchTerm(val));
+    dispatch(setSearchGanre(''));
     dispatch(setPage(1));
+  }, 300);
+  const resetSearchParams = () => {
+    setSearchValue('');
+    dispatch(setPage(1));
+    dispatch(setSearchTerm(''));
   };
   const onchangeGanre = (e: string) => {
-    dispatch(setSearchTerm(''));
     dispatch(setSearchGanre(e));
-    dispatch(setPage(1));
+    resetSearchParams();
   };
-useEffect(()=>{
-return ()=>{
-  dispatch(setSearchTerm(''));
-  dispatch(setSearchGanre(''));
-  dispatch(setPage(1));
-}
-},[dispatch, setPage, setSearchGanre, setSearchTerm]);
+  
+  useEffect(() => {
+    return () => {
+      dispatch(setSearchTerm(''));
+      dispatch(setSearchGanre(''));
+      dispatch(setPage(1));
+    };
+  }, [dispatch, setPage, setSearchGanre, setSearchTerm]);
   return (
     <div className={styles.searchbar}>
-      <Form
-        className={styles.searchform}
-        onSubmit={onSubmit}
-        reset={resetSearch}
-      >
+      <Form className={styles.searchform}>
         <Input
           isFullfield
           placeholder={t('Поиск')}
           autofocus
+          value={searchValue}
           name="searchByKeyWord"
-          maxLength={20}
+          maxLength={18}
           className="search-input"
-          onChange={() => setresetSearch(false)}
+          onChange={(val) => {
+            setSearchValue(val);
+            onChangeSearch(val);
+          }}
         />
-
-        <Button variant="search" type="submit" className={styles.searchBtn} />
+        <ClearIcon className={styles.searchClear} onClick={resetSearchParams} />
       </Form>
       <Select
         options={genres}

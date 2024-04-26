@@ -11,13 +11,13 @@
 }
 
 *::-webkit-scrollbar {
-  width: 12px;               /* ширина scrollbar */
+  width: 12px;               
 }
 *::-webkit-scrollbar-track {
-  background: var(--violet-100);        /* цвет дорожки */
+  background: var(--violet-100);        
 }
 *::-webkit-scrollbar-thumb {
-  background-color: var(--violet-200);    /* цвет плашки */
-  border-radius: 20px;       /* закругления плашки */
-  border: 2px solid white;  /* padding вокруг плашки */
+  background-color: var(--violet-200);    
+  border-radius: 20px;       
+  border: 2px solid white; 
 }

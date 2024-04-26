@@ -19,10 +19,15 @@
 .searchform {
   position: relative;
 }
-.searchBtn {
+.searchClear {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 2px;
+  top: 10%;
+  fill:var(--gray1-color);
+   &:hover {
+    cursor: pointer;
+    fill: var(--primary-color);
+  }
 }
 
 .genre {
