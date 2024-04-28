@@ -17,7 +17,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
   [AppRoutes.FAVORITE]: '/favorites',
   [AppRoutes.NOTFOUND]: '*',
-  [AppRoutes.MOVIE]: ':id',
+  [AppRoutes.MOVIE]: 'movie/:id',
 };
 
 export const routeConfig: Record<AppRoutes, RouteObject> = {
@@ -29,7 +29,7 @@ export const routeConfig: Record<AppRoutes, RouteObject> = {
     path: RoutePath.favorites,
     children: [
       { index: true, element: <Favorites /> },
-      { path: ':id', element: <MoviePage /> },
+      { path: 'movie/:id', element: <MoviePage /> },
     ],
   },
   [AppRoutes.MOVIE]: {

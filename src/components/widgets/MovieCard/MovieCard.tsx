@@ -37,7 +37,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const movieId = filmId || kinopoiskId;
   const handleMovieClick = () => {
     dispatch(MoviesActions.setRating(movieRating));
-    navigate(`${movieId}`);
+    navigate(`movie/${movieId}`);
   };
   return (
     <div className={styles.moviecard} onClick={handleMovieClick}>
