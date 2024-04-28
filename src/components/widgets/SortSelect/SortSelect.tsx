@@ -7,7 +7,7 @@ import { Movie } from 'src/types/types';
 
 export const SortSelectOptions = [
   { value: 'year', label: 'год' },
-  { value: 'rating', label: 'рэйтинг' },
+  { value: 'rating', label: 'рейтинг' },
 ];
 
 export const SortSelect = memo(() => {
